@@ -18,7 +18,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	t, err := tail.TailFile(*filename, tail.Config{Follow: true})
+	t, err := tail.TailFile(*filename, tail.Config{Location: &tail.SeekInfo{
+		Offset: int64(10),
+		Whence: os.SEEK_END,
+	}, Follow: true})
 	if err != nil {
 		panic(err)
 	}
@@ -26,15 +29,5 @@ func main() {
 	w := zerolog.ConsoleWriter{Out: os.Stderr}
 	for line := range t.Lines {
 		w.Write([]byte(line.Text))
-
-		/*
-			var fields map[string]interface{}
-			if err := json.Unmarshal([]byte(line.Text), &fields); err != nil {
-				log.Error().Err(err).Msgf("failed to parse line: %q", line.Text)
-				continue
-			}
-
-			log.Log().Fields(fields).Msg("")
-		*/
 	}
 }
