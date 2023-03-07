@@ -12,7 +12,6 @@ import (
 
 func main() {
 	f := flag.String("f", "", "file to tail")
-	n := flag.Int64("n", 10, "number of lines to tail")
 	debug := flag.Bool("debug", true, "")
 	trace := flag.Bool("trace", true, "")
 	flag.Parse()
@@ -23,10 +22,7 @@ func main() {
 	}
 
 	t, err := tail.TailFile(*f, tail.Config{
-		Location: &tail.SeekInfo{
-			Offset: -(*n),
-			Whence: os.SEEK_END,
-		},
+		// Location: &tail.SeekInfo{Whence: os.SEEK_END},
 		Follow: true,
 	})
 	if err != nil {
