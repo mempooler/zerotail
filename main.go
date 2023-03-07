@@ -34,7 +34,7 @@ func main() {
 	}
 
 	w := zerolog.NewFilteredWriter(
-		zerolog.MultiLevelWriter(ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339Nano}),
+		zerolog.MultiLevelWriter(zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339Nano}),
 		getLevel(*trace, *debug),
 	)
 	for line := range t.Lines {
