@@ -4,6 +4,10 @@ github.com/mattn/go-colorable v0.1.12 h1:jF+Du6AlPIjs2BiUiQlKOX0rt3SujHxPnksPKZb
 github.com/mattn/go-colorable v0.1.12/go.mod h1:u5H1YNBxpqRaxsYJYSkiCWKzEfiAb1Gb520KVy5xxl4=
 github.com/mattn/go-isatty v0.0.14 h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=
 github.com/mattn/go-isatty v0.0.14/go.mod h1:7GGIvUiUoEMVVmxf/4nioHXj79iQHKdU27kJ6hsGG94=
+github.com/mempooler/orderedmap v0.0.0-20220924222525-f2e82a382cea h1:OTUwux15EqalwCQ5A0ve7DcTF5hbID+oU8yT/STm6xQ=
+github.com/mempooler/orderedmap v0.0.0-20220924222525-f2e82a382cea/go.mod h1:U03M4y0actmSVe0hb4V8wBIf9ykGtZzP/vbF7pl+ZbU=
+github.com/mempooler/zerolog v0.0.0-20220925031459-71b73ed0d80d h1:1vHzk0pt6CbCN/LodCsa/l3fbN1Sj+HjjmJtaKlZ/hc=
+github.com/mempooler/zerolog v0.0.0-20220925031459-71b73ed0d80d/go.mod h1:VHKh+PuMSNDxc3oD1FJgIxRY6AbrXX+po+h69Xr3g+w=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/rs/xid v1.4.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
 github.com/rs/zerolog v1.29.0 h1:Zes4hju04hjbvkVkOhdl2HpZa+0PmVwigmo8XoORE5w=

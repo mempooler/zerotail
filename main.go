@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
+	"github.com/mempooler/zerolog"
+	"github.com/mempooler/zerolog/log"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 	}
 	defer file.Close()
 
-	logger := zerolog.New(os.Stdout)
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	var lineCount int
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -47,7 +47,7 @@ func main() {
 
 		// logger := logger.With().Fields(fields).Logger()
 		// logger.WithLevel(zerolog.Disabled).Msg("")
-		logger.Log().Fields(fields).Msg("")
+		log.Log().Fields(fields).Msg("")
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal().Err(err).Msg("failed to read from file")
