@@ -30,11 +30,12 @@ func main() {
 	}
 	defer file.Close()
 
+	logger := zerolog.New(os.Stdout)
 	var lineCount int
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		lineCount++
-		if lineCount > *lines {
+		if *lines != -1 && lineCount > *lines {
 			continue
 		}
 
@@ -44,8 +45,9 @@ func main() {
 			continue
 		}
 
-		logger := zerolog.New(os.Stdout).With().Fields(fields).Logger()
-		logger.WithLevel(zerolog.Disabled).Msg("")
+		// logger := logger.With().Fields(fields).Logger()
+		// logger.WithLevel(zerolog.Disabled).Msg("")
+		logger.Log().Fields(fields).Msg("")
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal().Err(err).Msg("failed to read from file")
