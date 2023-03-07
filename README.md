@@ -1,0 +1,2 @@
+# zerotail
+tail for Zerolog
