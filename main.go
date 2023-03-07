@@ -20,8 +20,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	t, err := tail.TailFile(*filename, tail.Config{Follow: true})
+	if err != nil {
+		panic(err)
+	}
+
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	for line := range t.Lines {
 		var fields map[string]interface{}
 		if err := json.Unmarshal([]byte(line.Text), &fields); err != nil {
