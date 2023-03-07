@@ -18,10 +18,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	t, err := tail.TailFile(*filename, tail.Config{Location: &tail.SeekInfo{
-		Offset: int64(10),
-		Whence: os.SEEK_END,
-	}, Follow: true})
+	t, err := tail.TailFile(*filename, tail.Config{
+		Location: &tail.SeekInfo{Whence: os.SEEK_END},
+		Follow:   true,
+	})
 	if err != nil {
 		panic(err)
 	}
