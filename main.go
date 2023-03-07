@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	filename = flag.String("f", "", "file to tail")
+	filename := flag.String("f", "", "file to tail")
 	flag.Parse()
 
 	if *filename == "" {
