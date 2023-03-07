@@ -12,11 +12,7 @@ import (
 )
 
 func main() {
-	var (
-		filename = flag.String("f", "", "file to tail")
-		follow   = flag.Bool("follow", false, "follow the file as it grows")
-		lines    = flag.Int("n", 10, "number of lines to tail")
-	)
+	filename = flag.String("f", "", "file to tail")
 	flag.Parse()
 
 	if *filename == "" {
@@ -30,37 +26,9 @@ func main() {
 	}
 	defer file.Close()
 
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-	var lineCount int
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lineCount++
-		if *lines != -1 && lineCount > *lines {
-			continue
-		}
-
-		var fields map[string]interface{}
-		if err := json.Unmarshal(scanner.Bytes(), &fields); err != nil {
-			log.Error().Err(err).Msgf("failed to parse line: %q", scanner.Text())
-			continue
-		}
-
-		// logger := logger.With().Fields(fields).Logger()
-		// logger.WithLevel(zerolog.Disabled).Msg("")
-		log.Log().Fields(fields).Msg("")
-	}
-	if err := scanner.Err(); err != nil {
-		log.Fatal().Err(err).Msg("failed to read from file")
-	}
-
-	if *follow {
-		followFile(file)
-	}
-}
-
-func followFile(file *os.File) {
 	file.Seek(0, os.SEEK_END)
 	scanner := bufio.NewScanner(file)
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	for scanner.Scan() {
 		var fields map[string]interface{}
 		if err := json.Unmarshal(scanner.Bytes(), &fields); err != nil {
@@ -68,8 +36,7 @@ func followFile(file *os.File) {
 			continue
 		}
 
-		logger := zerolog.New(os.Stdout).With().Fields(fields).Logger()
-		logger.WithLevel(zerolog.Disabled).Msg("")
+		log.Log().Fields(fields).Msg("")
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal().Err(err).Msg("failed to read from file")
