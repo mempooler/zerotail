@@ -12,7 +12,7 @@ import (
 
 func main() {
 	f := flag.String("f", "", "file to tail")
-	n := flag.Int("n", 10, "number of lines to tail")
+	n := flag.Int64("n", 10, "number of lines to tail")
 	debug := flag.Bool("debug", true, "")
 	trace := flag.Bool("trace", true, "")
 	flag.Parse()
