@@ -4,24 +4,27 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/hpcloud/tail"
 	"github.com/mempooler/zerolog"
 )
 
 func main() {
-	filename := flag.String("f", "", "file to tail")
-	lines := flag.Int("n", 10, "number of lines to tail")
+	f := flag.String("f", "", "file to tail")
+	n := flag.Int("n", 10, "number of lines to tail")
+	debug := flag.Bool("debug", true, "")
+	trace := flag.Bool("trace", true, "")
 	flag.Parse()
 
-	if *filename == "" {
+	if *f == "" {
 		fmt.Println("usage: tail -f <filename>")
 		os.Exit(1)
 	}
 
-	t, err := tail.TailFile(*filename, tail.Config{
+	t, err := tail.TailFile(*f, tail.Config{
 		Location: &tail.SeekInfo{
-			Offset: -n,
+			Offset: -(*n),
 			Whence: os.SEEK_END,
 		},
 		Follow: true,
@@ -30,8 +33,21 @@ func main() {
 		panic(err)
 	}
 
-	w := zerolog.ConsoleWriter{Out: os.Stderr}
+	w := zerolog.NewFilteredWriter(
+		zerolog.MultiLevelWriter(ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339Nano}),
+		getLevel(*trace, *debug),
+	)
 	for line := range t.Lines {
 		w.Write([]byte(line.Text))
+	}
+}
+
+func getLevel(trace, debug bool) zerolog.Level {
+	if trace {
+		return zerolog.TraceLevel
+	} else if debug {
+		return zerolog.DebugLevel
+	} else {
+		return zerolog.InfoLevel
 	}
 }
