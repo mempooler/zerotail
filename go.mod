@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/hpcloud/tail v1.0.0
-	github.com/mempooler/zerolog v0.0.0-20230307174157-23bf0b3cf47e
+	github.com/mempooler/zerolog v0.0.0-20230310025704-3e67878587ca
 	github.com/rs/zerolog v1.29.0
 )
 

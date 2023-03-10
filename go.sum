@@ -17,6 +17,8 @@ github.com/mempooler/zerolog v0.0.0-20220925031459-71b73ed0d80d h1:1vHzk0pt6CbCN
 github.com/mempooler/zerolog v0.0.0-20220925031459-71b73ed0d80d/go.mod h1:VHKh+PuMSNDxc3oD1FJgIxRY6AbrXX+po+h69Xr3g+w=
 github.com/mempooler/zerolog v0.0.0-20230307174157-23bf0b3cf47e h1:eAH7USDe8aixky7+JSDBgDusinPXh++fAs4FPJD57X4=
 github.com/mempooler/zerolog v0.0.0-20230307174157-23bf0b3cf47e/go.mod h1:VHKh+PuMSNDxc3oD1FJgIxRY6AbrXX+po+h69Xr3g+w=
+github.com/mempooler/zerolog v0.0.0-20230310025704-3e67878587ca h1:3yJHuAY9FEe/jRfJHc0yQdg1GNtZpBz3zriilns+P2A=
+github.com/mempooler/zerolog v0.0.0-20230310025704-3e67878587ca/go.mod h1:VHKh+PuMSNDxc3oD1FJgIxRY6AbrXX+po+h69Xr3g+w=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/rs/xid v1.4.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
 github.com/rs/zerolog v1.29.0 h1:Zes4hju04hjbvkVkOhdl2HpZa+0PmVwigmo8XoORE5w=
